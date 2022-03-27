@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.api</groupId>
     <artifactId>diorismos</artifactId>
-    <version>0.1</version>
+    <version>1.0</version>
     <name>DiorismosAPI</name>
     <description>DiorismosAPI for dental clinic Dr.Kelvin Cano</description>
     <properties>
