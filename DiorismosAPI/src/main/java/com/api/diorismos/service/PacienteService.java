@@ -6,7 +6,6 @@ package com.api.diorismos.service;
 
 import com.api.diorismos.model.Paciente;
 import com.api.diorismos.repository.IPacienteDAO;
-import java.sql.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
