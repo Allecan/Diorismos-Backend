@@ -5,7 +5,6 @@ import com.api.diorismos.repository.ICitaDAO;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
