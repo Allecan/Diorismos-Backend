@@ -1,11 +1,16 @@
 package com.api.diorismos.service;
 
 import com.api.diorismos.model.Cita;
+import com.api.diorismos.model.CitaDTO;
 import com.api.diorismos.repository.ICitaDAO;
 import java.sql.Date;
 import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,10 +28,22 @@ public class CitaService {
         return (List<Cita>) citaDAO.findAll();
     }
 
-    public Cita guardarCita(Cita nuevaCita) {
-        
-        nuevaCita.setStatus(Short.parseShort("0"));
-        return citaDAO.save(nuevaCita);
+    public Cita guardarCita(CitaDTO nuevaCita) {
+
+        Cita cita = new Cita();
+        cita.setFecha(Date.valueOf(nuevaCita.getFecha()));
+        cita.setHora(nuevaCita.getHora());
+        cita.setPacienteIdPaciente(nuevaCita.getPacienteIdPaciente());
+        cita.setStatus(Short.parseShort("0"));
+
+        Date fechaHoy = new Date(System.currentTimeMillis());
+        if (cita.getFecha().toString().equals(fechaHoy.toString())) {
+            return citaDAO.save(cita);
+        }
+        if (cita.getFecha().compareTo(fechaHoy) < 0) {
+            return null;
+        }
+        return citaDAO.save(cita);
     }
 
     public List<Cita> listarCitasReservadas(Date fecha) {
