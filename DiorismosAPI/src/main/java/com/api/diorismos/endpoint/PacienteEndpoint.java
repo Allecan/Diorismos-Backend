@@ -7,6 +7,8 @@ package com.api.diorismos.endpoint;
 import com.api.diorismos.model.Paciente;
 import com.api.diorismos.service.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,21 +23,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RestController
 @RequestMapping("/paciente")
 public class PacienteEndpoint {
-    
+
     @Autowired
     private PacienteService pacienteService;
-    
-    @GetMapping("/find/{dpi}")
-    public Boolean findDPI(@PathVariable("dpi") String dpi) {
-        return pacienteService.existePaciente(dpi);
-    }
-    
-    @PostMapping("/crear")
-    public Paciente crearPaciente(@RequestBody Paciente paciente) {
+
+    @PostMapping()
+    public ResponseEntity<Paciente> crearPaciente(@RequestBody Paciente paciente) {
         if (!pacienteService.existePaciente(paciente.getDpi())) {
-            return pacienteService.guardarPaciente(paciente);
+            return new ResponseEntity<>(pacienteService.guardarPaciente(paciente),
+                    HttpStatus.CREATED);
         }
-        return pacienteService.obtenerPaciente(paciente.getDpi());
+        return new ResponseEntity<>(pacienteService.obtenerPaciente(paciente.getDpi()),
+                HttpStatus.OK);
     }
-    
 }

@@ -24,6 +24,8 @@ public class CitaService {
     }
 
     public Cita guardarCita(Cita nuevaCita) {
+        
+        nuevaCita.setStatus(Short.parseShort("0"));
         return citaDAO.save(nuevaCita);
     }
 
@@ -62,7 +64,6 @@ public class CitaService {
             citasDisponibles.remove("14:00");
             citasDisponibles.remove(citaReservada.getHora().substring(0, 5));
         }
-
         return citasDisponibles;
     }
 }
