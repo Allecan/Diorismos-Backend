@@ -4,7 +4,6 @@
  */
 package com.api.diorismos.endpoint;
 
-import com.api.diorismos.model.Cita;
 import com.api.diorismos.model.CitaDTO;
 import com.api.diorismos.service.CitaService;
 import java.util.HashMap;
@@ -12,6 +11,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author allec
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/cita")
 public class CitaEndpoint {
