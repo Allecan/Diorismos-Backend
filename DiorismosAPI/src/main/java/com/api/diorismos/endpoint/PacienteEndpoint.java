@@ -6,6 +6,7 @@ package com.api.diorismos.endpoint;
 
 import com.api.diorismos.model.Paciente;
 import com.api.diorismos.service.PacienteService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +37,11 @@ public class PacienteEndpoint {
         }
         return new ResponseEntity<>(pacienteService.obtenerPaciente(paciente.getDpi()),
                 HttpStatus.OK);
+    }
+
+    @GetMapping("/listar")
+    public List<Paciente> listarPacientes() {
+        return pacienteService.listTodos();
     }
 
     @GetMapping("/saludo")

@@ -6,6 +6,7 @@ package com.api.diorismos.service;
 
 import com.api.diorismos.model.Paciente;
 import com.api.diorismos.repository.IPacienteDAO;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,5 +30,9 @@ public class PacienteService {
 
     public Paciente obtenerPaciente(String dpi) {
         return pacienteDAO.findByDpi(dpi);
+    }
+    
+    public List<Paciente> listTodos(){
+        return (List<Paciente>) pacienteDAO.findAll();
     }
 }
